@@ -8,6 +8,7 @@ __pycache__/
 *.db-shm
 *.db-wal
 /datos_locales/
+/resultados/locales/
 /work/ocr_comparacion/modelos/
 /outputs/Resultados_FastPlate_60_*.csv
 /outputs/*_local.registros/

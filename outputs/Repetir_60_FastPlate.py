@@ -14,15 +14,15 @@ from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 
-SALIDAS = Path(__file__).resolve().parent
-TRABAJO = SALIDAS.parent / "work"
-KIT = SALIDAS / "Kit_bloque_controlado"
-REGISTROS = SALIDAS / "Protocolo_pruebas_placas_luz_fija_capturas.registros"
-MODELO = TRABAJO / "ocr_comparacion" / "modelos" / "fastplate"
+RAIZ = Path(__file__).resolve().parents[1]
+RESULTADOS = RAIZ / "resultados"
+BLOQUE = RESULTADOS / "bloque_controlado"
+REGISTROS = BLOQUE / "Protocolo_pruebas_placas_luz_fija_capturas.registros"
+MODELO = RAIZ / "work" / "ocr_comparacion" / "modelos" / "fastplate"
 
 
 def cargar_casos():
-    manifiesto = TRABAJO / "ocr_comparacion" / "casos.csv"
+    manifiesto = BLOQUE / "referencias_60.csv"
     with manifiesto.open(encoding="utf-8-sig", newline="") as archivo:
         casos = sorted(
             (fila for fila in csv.DictReader(archivo, delimiter=";") if fila["vista"] == "original"),
@@ -33,7 +33,7 @@ def cargar_casos():
     for fila in casos:
         registro = REGISTROS / f'{fila["caso"]}.json'
         datos = json.loads(registro.read_text(encoding="utf-8-sig"))["datos"]
-        original = KIT / "evidencias_controlado" / datos["evidencia"]["carpeta"] / "original.jpg"
+        original = BLOQUE / "evidencias_controlado" / datos["evidencia"]["carpeta"] / "original.jpg"
         fila["jpeg"] = original.read_bytes()
     return casos
 
@@ -66,10 +66,10 @@ def evaluar(caso, resultado, autorizadas):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--salida", type=Path, default=SALIDAS, help="Carpeta donde se guardará el CSV.")
+    parser.add_argument("--salida", type=Path, default=RESULTADOS / "locales", help="Carpeta donde se guardará el CSV.")
     args = parser.parse_args()
     casos = cargar_casos()
-    base = KIT / "placas_controlado.db"
+    base = BLOQUE / "placas_controlado.db"
     with closing(sqlite3.connect(base.as_uri() + "?mode=ro", uri=True)) as bd:
         autorizadas = {fila[0] for fila in bd.execute("SELECT placa FROM placas")}
 

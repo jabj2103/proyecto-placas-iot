@@ -17,7 +17,7 @@ from openpyxl import load_workbook
 
 
 PROYECTO = Path(__file__).resolve().parent
-EVIDENCIAS = Path(os.getenv("EVIDENCIAS_DIR", str(PROYECTO.parent / "datos_locales" / "evidencias")))
+EVIDENCIAS = Path(os.getenv("EVIDENCIAS_DIR", str(PROYECTO.parent / "resultados" / "locales" / "evidencias")))
 ESTADOS = {"REGISTRADA", "NO REGISTRADA", "NO CONCLUYENTE"}
 CAMPOS = {"Caso", "Entorno", "Tipo", "Distancia real (m)", "Ángulo lateral (°)", "Movimiento",
           "Matrícula real", "Captura ID", "Decisión API", "Matrícula devuelta",
