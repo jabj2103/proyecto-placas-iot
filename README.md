@@ -1,10 +1,10 @@
 # Reconocimiento de placas · Proyecto IoT Edge
 
-Preparé este prototipo académico para reconocer matrículas de automóviles y motocicletas. Uso una ESP32-CAM AI Thinker para enviar el JPEG al pulsar **Capturar y enviar**. En el portátil localizo la placa con YOLO, preparo el recorte con OpenCV, leo sus caracteres, consulto SQLite y muestro la decisión y las imágenes en Node-RED.
+Se desarrolló este prototipo académico para reconocer matrículas de automóviles y motocicletas. Al pulsar **Capturar y enviar**, la ESP32-CAM AI Thinker envía el JPEG al portátil. Allí se localiza la placa con YOLO, se prepara el recorte con OpenCV, se leen los caracteres y se consulta SQLite. La decisión y las imágenes se muestran en Node-RED.
 
 ## Resultados de las 60 capturas
 
-Tomé 60 fotos en casa con la ESP32-CAM en SXGA (1280 × 1024). Usé matrículas sintéticas en pantalla, luz fija, distancias de 0,80 m, 1,15 m y 1,50 m y ángulos de 0° y 25°. Para comparar los motores, reenvié los mismos JPEG a la API.
+Se tomaron 60 fotos en casa con la ESP32-CAM en SXGA (1280 × 1024). Las matrículas sintéticas se mostraron en pantalla con luz fija. Se hicieron pruebas a 0,80 m, 1,15 m y 1,50 m, con ángulos de 0° y 25°. Para comparar los motores, se reenviaron los mismos JPEG a la API.
 
 | Ensayo | Exactas | Incorrectas aceptadas | Inconclusas | Exactas a 25° |
 | --- | ---: | ---: | ---: | ---: |
@@ -12,21 +12,21 @@ Tomé 60 fotos en casa con la ESP32-CAM en SXGA (1280 × 1024). Usé matrículas
 | Repetición con Tesseract y confirmación de EasyOCR | 24/60 | 4 | 32 | 6/30 |
 | Repetición con FastPlateOCR | **53/60** | **0** | **7** | **24/30** |
 
-Elegí FastPlateOCR para el arranque de ejemplo porque obtuve **53 lecturas exactas de 60 (88,3 %)** con el recorte YOLO en color. En los siete casos inconclusos obtuve varias cajas candidatas y la API se abstuvo porque no pudo asociarlas a una sola placa. En la comparación sobre los mismos JPEG medí una mediana de **139,2 ms** con FastPlateOCR y **1.813,6 ms** con Tesseract y confirmación de EasyOCR. En una repetición aparte de FastPlateOCR obtuve **109,2 ms**. Medí el procesamiento dentro de la API. Tengo pendiente validar el desempeño con vehículos en el parqueadero.
+Se eligió FastPlateOCR para el arranque de ejemplo porque dio **53 lecturas exactas de 60 (88,3 %)** con el recorte YOLO en color. En los siete casos inconclusos se detectaron varias cajas candidatas y la API se abstuvo porque no pudo asociarlas a una sola placa. Al comparar los mismos JPEG, la mediana de procesamiento dentro de la API fue de **139,2 ms** con FastPlateOCR y **1.813,6 ms** con Tesseract y confirmación de EasyOCR. En una repetición aparte de FastPlateOCR se obtuvo una mediana de **109,2 ms**. Queda pendiente validar el desempeño con vehículos en el parqueadero.
 
-Dejé [`comparacion_api_60.csv`](resultados/comparacion_api_60.csv) como **CSV principal** para comparar los dos motores por caso. En [`resultados/`](resultados/) expliqué cuándo consultar el segundo CSV y dónde están el Excel diligenciado, los registros y las fotos.
+[`comparacion_api_60.csv`](resultados/comparacion_api_60.csv) es el **CSV principal** para comparar los dos motores por caso. El índice de [`resultados/`](resultados/) indica cuándo consultar el segundo CSV y dónde están el Excel diligenciado, los registros y las fotos.
 
 ## Qué hace cada archivo Python
 
-| Archivo | Para qué lo uso |
+| Archivo | Función |
 | --- | --- |
-| [`preparar_modelos.py`](preparar_modelos.py) | Preparo los pesos de YOLO y FastPlateOCR antes del primer arranque. |
-| [`api_placas.py`](outputs/api_placas.py) | Recibo la foto, detecto y leo la placa, consulto SQLite, guardo evidencia y publico el resultado. Inicio la API con Uvicorn. |
-| [`Repetir_60_FastPlate.py`](outputs/Repetir_60_FastPlate.py) | Vuelvo a procesar las 60 fotos con FastPlateOCR y genero un CSV nuevo. Puedo ejecutarlo sin cámara ni servicios Docker. |
-| [`Captura_guiada_placas.py`](outputs/Captura_guiada_placas.py) | Tomo fotos nuevas desde una ventana y guardo la decisión, el tiempo de ida y vuelta y el ID en una copia de la planilla. |
-| [`Importar_resultados_placas.py`](outputs/Importar_resultados_placas.py) | Completo campos vacíos en una copia de una planilla que ya tiene IDs de captura. Cruzo cada ID con su diagnóstico y, si tengo un archivo HAR del navegador, recupero el tiempo total. Es opcional. |
+| [`preparar_modelos.py`](preparar_modelos.py) | Prepara los pesos de YOLO y FastPlateOCR antes del primer arranque. |
+| [`api_placas.py`](outputs/api_placas.py) | Recibe la foto, detecta y lee la placa, consulta SQLite, guarda la evidencia y publica el resultado. La API se inicia con Uvicorn. |
+| [`Repetir_60_FastPlate.py`](outputs/Repetir_60_FastPlate.py) | Vuelve a procesar las 60 fotos con FastPlateOCR y genera un CSV nuevo. Se puede ejecutar sin cámara ni servicios Docker. |
+| [`Captura_guiada_placas.py`](outputs/Captura_guiada_placas.py) | Permite tomar fotos nuevas desde una ventana y guarda la decisión, el tiempo de ida y vuelta y el ID en una copia de la planilla. |
+| [`Importar_resultados_placas.py`](outputs/Importar_resultados_placas.py) | Completa campos vacíos en una copia de una planilla que ya tiene IDs de captura. Cruza cada ID con su diagnóstico y recupera el tiempo total si se proporciona un archivo HAR del navegador. Es opcional. |
 
-Documenté el recorrido de una foto en [Flujo de la API](outputs/Flujo_API_placas.md). Dejé los controles de cámara en [`CameraWebServerPlacas/`](outputs/CameraWebServerPlacas/), el broker y Node-RED en [`compose.yaml`](compose.yaml), el panel importable en [`flows_placas.json`](outputs/flows_placas.json) y una [planilla vacía](outputs/Protocolo_pruebas_placas_luz_fija.xlsx) para nuevas pruebas.
+El recorrido de una foto se describe en [Flujo de la API](outputs/Flujo_API_placas.md). Los controles de cámara están en [`CameraWebServerPlacas/`](outputs/CameraWebServerPlacas/). El broker y Node-RED se configuran en [`compose.yaml`](compose.yaml) y el panel se importa con [`flows_placas.json`](outputs/flows_placas.json). Se incluyó una [planilla vacía](outputs/Protocolo_pruebas_placas_luz_fija.xlsx) para nuevas pruebas.
 
 ## Instalación en el portátil
 
@@ -70,7 +70,7 @@ En Debian o Ubuntu, la edición de Python que uses debe incluir `venv`. Si `impo
 python outputs/Repetir_60_FastPlate.py
 ```
 
-Para repetir la prueba, reenvío los JPEG originales a `POST /capturas` con el cliente local de FastAPI, consulto la base de prueba en modo lectura y comparo los seis caracteres con la referencia. Simulo el envío a MQTT y genero las evidencias en una carpeta temporal. Dejo el CSV nuevo en `resultados/locales/`, que Git ignora.
+Para repetir la prueba se reenvían los JPEG originales a `POST /capturas` con el cliente local de FastAPI, se consulta la base de prueba en modo lectura y se comparan los seis caracteres con la referencia. Se simula el envío a MQTT y las evidencias se generan en una carpeta temporal. El CSV nuevo queda en `resultados/locales/`, que Git ignora.
 
 ## Arrancar el sistema con la cámara
 
