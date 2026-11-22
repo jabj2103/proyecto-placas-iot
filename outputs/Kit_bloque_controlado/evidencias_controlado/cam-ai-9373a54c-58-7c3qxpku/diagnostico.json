@@ -1,0 +1,54 @@
+{
+  "captura_id": "cam-ai-9373a54c-58",
+  "placa": null,
+  "decision": "NO CONCLUYENTE",
+  "motivo": "Tesseract no leyó una matrícula con formato ABC123 o ABC12D.",
+  "confianza_detector": 0.5519,
+  "confianza_ocr": null,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 611.4,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            575.885498046875,
+            163.89743041992188,
+            751.380126953125,
+            319.7519836425781
+          ],
+          "confianza": 0.5519
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    570,
+    158,
+    756,
+    324
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": null,
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "P",
+        0.0
+      ],
+      [
+        "P",
+        0.0
+      ]
+    ],
+    "franja_superior": []
+  }
+}

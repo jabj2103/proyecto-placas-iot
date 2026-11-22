@@ -1,0 +1,84 @@
+{
+  "captura_id": "cam-ai-9373a54c-49",
+  "placa": "HGF37N",
+  "decision": "NO REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.9401,
+  "confianza_ocr": 0.7532,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 1037.4,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            529.4232177734375,
+            198.986328125,
+            740.0650634765625,
+            306.3651428222656
+          ],
+          "confianza": 0.9401
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    524,
+    193,
+    745,
+    311
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      535.0,
+      208.0
+    ],
+    [
+      735.0,
+      210.0
+    ],
+    [
+      734.0,
+      297.0
+    ],
+    [
+      536.0,
+      295.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "HGF37N",
+        0.5829410899999999
+      ]
+    ],
+    "franja_superior": [
+      [
+        "HGF37N",
+        0.32206017000000003
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "HGF 37N",
+        0.8649934399999999
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "HGF 37N",
+        0.75317307
+      ]
+    ]
+  }
+}

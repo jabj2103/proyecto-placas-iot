@@ -1,0 +1,190 @@
+[
+  {
+    "id": "1c0727a3cdabf0a1",
+    "type": "tab",
+    "label": "Panel de placas",
+    "disabled": false,
+    "info": "Decisiones recientes del prototipo recibidas por MQTT."
+  },
+  {
+    "id": "1c0727a3cdabf0a3",
+    "type": "status",
+    "z": "1c0727a3cdabf0a1",
+    "name": "Conexión MQTT",
+    "scope": [
+      "1c0727a3cdabf0a2"
+    ],
+    "x": 150,
+    "y": 140,
+    "wires": [
+      [
+        "1c0727a3cdabf0a4"
+      ]
+    ]
+  },
+  {
+    "id": "1c0727a3cdabf0a4",
+    "type": "function",
+    "z": "1c0727a3cdabf0a1",
+    "name": "Actualizar últimas 20 capturas",
+    "func": "const panel = context.get('panel') || { conexion: 'conectando', capturas: [] };\n\nif (msg.status) {\n    // El nodo Status se limita al suscriptor MQTT de este panel.\n    const { fill, shape } = msg.status;\n    if (fill === 'green' && shape === 'dot') {\n        panel.conexion = 'conectado';\n    } else if (fill === 'yellow') {\n        panel.conexion = 'conectando';\n    } else {\n        panel.conexion = 'desconectado';\n    }\n} else {\n    const lectura = msg.payload;\n    const decisiones = ['REGISTRADA', 'NO REGISTRADA', 'NO CONCLUYENTE'];\n    if (!lectura || typeof lectura !== 'object' ||\n        typeof lectura.captura_id !== 'string' || !/^[A-Za-z0-9_-]{1,64}$/.test(lectura.captura_id) ||\n        !decisiones.includes(lectura.decision)) {\n        node.warn('Evento MQTT con ID o decisión inválidos');\n        return null;\n    }\n\n    panel.conexion = 'conectado';\n    const simulada = typeof lectura.simulada === 'boolean' ? lectura.simulada : null;\n    const clave = `${lectura.captura_id}/${simulada}`;\n    if (panel.capturas.some(captura => captura.clave === clave)) {\n        return null;\n    }\n\n    const carpeta = lectura.evidencia?.carpeta;\n    const evidencia = !simulada && typeof carpeta === 'string' &&\n        /^[A-Za-z0-9_-]{1,73}$/.test(carpeta) && carpeta.startsWith(`${lectura.captura_id}-`)\n        ? carpeta : null;\n    const captura = {\n        clave,\n        id: lectura.captura_id,\n        recibida: Date.now(),\n        placa: typeof lectura.placa === 'string' ? lectura.placa.trim().slice(0, 24) : '',\n        decision: lectura.decision,\n        motivo: typeof lectura.motivo === 'string' ? lectura.motivo.trim().slice(0, 400) : '',\n        simulada,\n        evidencia,\n        procesamiento: Number.isFinite(lectura.procesamiento_ms) && lectura.procesamiento_ms >= 0\n            ? lectura.procesamiento_ms : null\n    };\n    panel.capturas = [captura, ...panel.capturas].slice(0, 20);\n}\n\ncontext.set('panel', panel);\nreturn { payload: panel };\n",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 445,
+    "y": 100,
+    "wires": [
+      [
+        "1c0727a3cdabf0a5"
+      ]
+    ]
+  },
+  {
+    "id": "1c0727a3cdabf0a5",
+    "type": "ui-template",
+    "z": "1c0727a3cdabf0a1",
+    "group": "1c0727a3cdabf0a8",
+    "page": "",
+    "ui": "",
+    "name": "Monitor de placas",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "head": "",
+    "format": "<template>\n    <main class=\"placas-panel\">\n        <header class=\"placas-top\">\n            <h1>Monitor de placas</h1>\n            <span class=\"placas-conexion\" :data-estado=\"conexion\" role=\"status\">\n                <span aria-hidden=\"true\"></span> {{ textoConexion }}\n            </span>\n        </header>\n\n        <section class=\"placas-ultima\" aria-labelledby=\"placas-ultima-titulo\" aria-live=\"polite\">\n            <h2 id=\"placas-ultima-titulo\">Última captura</h2>\n            <div v-if=\"ultima\" class=\"placas-captura\">\n                <div class=\"placas-lectura\">\n                    <p class=\"placas-codigo\" :class=\"{'placas-sin-lectura': !ultima.placa}\">{{ ultima.placa || 'Sin lectura' }}</p>\n                    <p v-if=\"ultima.placa && ultima.decision === 'NO CONCLUYENTE'\" class=\"placas-tentativa\">Lectura tentativa</p>\n                </div>\n                <div class=\"placas-resultado\">\n                    <div class=\"placas-etiquetas\">\n                        <span class=\"placas-decision\" :data-decision=\"ultima.decision\">{{ ultima.decision }}</span>\n                        <span v-if=\"ultima.simulada !== false\" class=\"placas-origen\">{{ origen(ultima.simulada) }}</span>\n                    </div>\n                    <p v-if=\"ultima.motivo\" class=\"placas-motivo\">{{ ultima.motivo }}</p>\n                    <dl class=\"placas-datos\">\n                        <div><dt>ID de captura</dt><dd class=\"placas-id\">{{ ultima.id }}</dd></div>\n                        <div><dt>Procesamiento API</dt><dd>{{ duracion(ultima.procesamiento) }}</dd></div>\n                    </dl>\n                </div>\n            </div>\n            <p v-else class=\"placas-vacio\">Esperando la primera captura.</p>\n        </section>\n\n        <section v-if=\"ultima && ultima.simulada === false\" class=\"placas-fotos\" aria-labelledby=\"placas-fotos-titulo\">\n            <h2 id=\"placas-fotos-titulo\">Imágenes de la última captura</h2>\n            <div class=\"placas-fotos-grid\">\n                <figure v-for=\"vista in vistas\" :key=\"`${ultima.id}/${vista.tipo}`\">\n                    <figcaption>{{ vista.titulo }}</figcaption>\n                    <a v-if=\"ultima.evidencia && !fallos[vista.tipo]\" class=\"placas-imagen\"\n                        :href=\"urlEvidencia(vista.tipo)\" target=\"_blank\" rel=\"noopener\" :aria-label=\"`Abrir ${vista.titulo.toLowerCase()}`\">\n                        <img :src=\"urlEvidencia(vista.tipo)\" :alt=\"vista.alt\" @error=\"fallos[vista.tipo] = true\">\n                    </a>\n                    <p v-else class=\"placas-imagen placas-imagen-vacia\">{{ vista.ausente }}</p>\n                </figure>\n            </div>\n        </section>\n\n        <section class=\"placas-historial\" aria-labelledby=\"placas-historial-titulo\">\n            <header>\n                <h2 id=\"placas-historial-titulo\">Historial reciente</h2>\n                <span>{{ capturas.length }} de 20</span>\n            </header>\n            <div v-if=\"capturas.length\" class=\"placas-tabla\" tabindex=\"0\" role=\"region\" aria-label=\"Tabla de capturas recientes\">\n                <table>\n                    <thead>\n                        <tr><th scope=\"col\">Recepción</th><th scope=\"col\">Matrícula</th><th scope=\"col\">Decisión</th><th scope=\"col\">ID de captura</th><th scope=\"col\">Procesamiento API</th></tr>\n                    </thead>\n                    <tbody>\n                        <tr v-for=\"captura in capturas\" :key=\"captura.clave\">\n                            <td>{{ hora(captura.recibida) }}</td>\n                            <td class=\"placas-matricula\">\n                                {{ captura.placa || '—' }}\n                                <small v-if=\"captura.placa && captura.decision === 'NO CONCLUYENTE'\">Tentativa</small>\n                            </td>\n                            <td><span class=\"placas-decision\" :data-decision=\"captura.decision\">{{ captura.decision }}</span></td>\n                            <td class=\"placas-id\">{{ captura.id }}<small v-if=\"captura.simulada !== false\">{{ origen(captura.simulada) }}</small></td>\n                            <td>{{ duracion(captura.procesamiento) }}</td>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n            <p v-else class=\"placas-vacio\">Las decisiones recibidas aparecerán aquí.</p>\n        </section>\n    </main>\n</template>\n\n<script>\nexport default {\n    data() {\n        return {\n            fallos: {},\n            vistas: [\n                { tipo: 'foto', titulo: 'Foto de la captura', alt: 'Foto completa de la cámara, con los recuadros de detección cuando los hay',\n                    ausente: 'Foto no disponible para esta captura.' },\n                { tipo: 'recorte', titulo: 'Recorte de la placa', alt: 'Región de la placa recortada por el detector',\n                    ausente: 'Recorte no disponible para esta captura.' }\n            ]\n        };\n    },\n    computed: {\n        capturas() { return this.msg?.payload?.capturas || [] },\n        ultima() { return this.capturas[0] },\n        conexion() { return this.msg?.payload?.conexion || 'conectando' },\n        textoConexion() {\n            const estados = {\n                conectado: 'MQTT conectado',\n                conectando: 'MQTT conectando',\n                desconectado: 'MQTT sin conexión'\n            };\n            return estados[this.conexion];\n        }\n    },\n    watch: {\n        'ultima.evidencia'() { this.fallos = {} }\n    },\n    methods: {\n        urlEvidencia(tipo) {\n            return `http://127.0.0.1:8000/evidencias/${this.ultima.evidencia}/${tipo}`;\n        },\n        duracion(ms) {\n            return ms === null ? '—' : `${new Intl.NumberFormat('es-CO', { maximumFractionDigits: 1 }).format(ms)} ms`;\n        },\n        hora(marca) {\n            return new Intl.DateTimeFormat('es-CO', { day: '2-digit', month: '2-digit', hour: '2-digit',\n                minute: '2-digit', second: '2-digit', hourCycle: 'h23', timeZone: 'America/Bogota' }).format(marca);\n        },\n        origen(simulada) { return simulada ? 'Simulada' : 'Origen sin indicar' }\n    }\n}\n</script>\n\n<style>\n.placas-panel {\n    --ink: #182d3a;\n    --muted: #4e6672;\n    --line: #dce5e8;\n    width: 100%;\n    min-width: 0;\n    max-width: 1120px;\n    margin: 0 auto;\n    padding: clamp(14px, 3.5vw, 38px);\n    color: var(--ink);\n    font-family: system-ui, sans-serif;\n}\n.placas-panel .placas-top, .placas-panel .placas-historial > header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    flex-wrap: wrap;\n    gap: 12px;\n}\n.placas-panel h1 { font-size: clamp(27px, 4vw, 38px); letter-spacing: -.045em; line-height: 1.12; margin: 0; }\n.placas-panel h2 { font-size: 16px; letter-spacing: -.015em; margin: 0; }\n.placas-panel .placas-conexion {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    border: 1px solid currentColor;\n    padding: 6px 11px;\n    border-radius: 30px;\n    color: #745608;\n    background: #fff8df;\n    font-size: 13px;\n    font-weight: 650;\n}\n.placas-panel .placas-conexion span { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }\n.placas-panel .placas-conexion[data-estado=\"conectado\"] { color: #185e51; background: #edf9f3; }\n.placas-panel .placas-conexion[data-estado=\"desconectado\"] { color: #962d36; background: #fff0ef; }\n.placas-panel section { border: 1px solid var(--line); border-radius: 18px; margin-top: 20px; }\n.placas-panel .placas-ultima { padding: clamp(16px, 3vw, 26px); color: #f5fafb; background: #162d3b; border-color: #162d3b; }\n.placas-panel .placas-captura { display: grid; grid-template-columns: minmax(215px, .8fr) minmax(0, 1.2fr); gap: clamp(16px, 3.5vw, 38px); align-items: start; margin-top: 16px; }\n.placas-panel .placas-lectura { min-width: 0; }\n.placas-panel .placas-codigo {\n    margin: 0;\n    padding: 13px 14px;\n    color: #23323a;\n    background: #f8d665;\n    border: 3px double #715612;\n    border-radius: 10px;\n    text-align: center;\n    font: 750 clamp(24px, 5vw, 44px)/1.1 ui-monospace, Consolas, monospace;\n    letter-spacing: .045em;\n    overflow-wrap: anywhere;\n}\n.placas-panel .placas-sin-lectura { font: 700 22px/1.55 system-ui, sans-serif; letter-spacing: -.02em; }\n.placas-panel .placas-tentativa { margin: 7px 0 0; text-align: center; color: #f9e4a2; font-size: 13px; }\n.placas-panel .placas-etiquetas { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }\n.placas-panel .placas-decision, .placas-panel .placas-origen { display: inline-block; padding: 4px 8px; border-radius: 6px; font: 720 11px/1.35 system-ui, sans-serif; white-space: nowrap; }\n.placas-panel .placas-decision[data-decision=\"REGISTRADA\"] { color: #185447; background: #d9f2e7; }\n.placas-panel .placas-decision[data-decision=\"NO REGISTRADA\"] { color: #8c2634; background: #fbe3e7; }\n.placas-panel .placas-decision[data-decision=\"NO CONCLUYENTE\"] { color: #654700; background: #ffe9a8; }\n.placas-panel .placas-origen { color: #e6eef1; border: 1px solid #6f8995; }\n.placas-panel .placas-motivo { margin: 11px 0 0; color: #e1edf1; font-size: 14px; overflow-wrap: anywhere; }\n.placas-panel .placas-datos { display: flex; flex-wrap: wrap; column-gap: 24px; row-gap: 10px; margin: 14px 0 0; }\n.placas-panel .placas-datos dt { color: #bfd2db; font-size: 12px; }\n.placas-panel dd { margin: 2px 0 0; font-size: 14px; overflow-wrap: anywhere; }\n.placas-panel .placas-id, .placas-panel .placas-matricula { font-family: ui-monospace, Consolas, monospace; }\n.placas-panel .placas-fotos { padding: 14px 18px 18px; background: #fff; }\n.placas-panel .placas-fotos-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 12px; }\n.placas-panel figure { min-width: 0; margin: 0; }\n.placas-panel figcaption { margin: 0 0 6px; color: var(--muted); font-size: 13px; font-weight: 650; }\n.placas-panel .placas-imagen {\n    display: grid;\n    place-items: center;\n    width: 100%;\n    aspect-ratio: 4 / 3;\n    margin: 0;\n    border: 1px solid var(--line);\n    border-radius: 8px;\n    background: #f2f6f7;\n    overflow: hidden;\n}\n.placas-panel .placas-imagen img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }\n.placas-panel .placas-imagen-vacia { padding: 10px; text-align: center; font-size: 13px; color: var(--muted); }\n.placas-panel .placas-historial { background: #fff; overflow: hidden; }\n.placas-panel .placas-historial > header { padding: 14px 18px; }\n.placas-panel .placas-historial > header > span { color: var(--muted); font-size: 13px; }\n.placas-panel .placas-tabla { overflow-x: auto; contain: inline-size; }\n.placas-panel table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }\n.placas-panel th, .placas-panel td { padding: 11px 16px; border-top: 1px solid var(--line); vertical-align: top; }\n.placas-panel th { white-space: nowrap; background: #f2f6f7; }\n.placas-panel td:first-child, .placas-panel td:last-child { white-space: nowrap; }\n.placas-panel td.placas-id { overflow-wrap: anywhere; }\n.placas-panel td small { display: block; color: var(--muted); font: 12px system-ui, sans-serif; }\n.placas-panel .placas-vacio { margin: 0; padding: 16px 18px; font-size: 14px; color: var(--muted); }\n.placas-panel .placas-ultima .placas-vacio { padding: 12px 0 0; color: #bfd2db; }\n@media (max-width: 650px) {\n    .placas-panel .placas-captura { grid-template-columns: minmax(0, 1fr); }\n    .placas-panel .placas-fotos-grid { grid-template-columns: minmax(0, 1fr); }\n    .placas-panel .placas-datos { margin-top: 10px; }\n    .placas-panel table { min-width: 600px; }\n}\n</style>\n",
+    "storeOutMessages": true,
+    "passthru": false,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 710,
+    "y": 100,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1c0727a3cdabf0a6",
+    "type": "ui-base",
+    "name": "Monitoreo de placas",
+    "path": "/dashboard",
+    "appIcon": "",
+    "includeClientData": false,
+    "acceptsClientConfig": [],
+    "showPathInSidebar": false,
+    "headerContent": "none",
+    "navigationStyle": "none",
+    "titleBarStyle": "hidden",
+    "showReconnectNotification": true,
+    "notificationDisplayTime": 3,
+    "showDisconnectNotification": true
+  },
+  {
+    "id": "1c0727a3cdabf0a7",
+    "type": "ui-page",
+    "name": "Monitor de placas",
+    "ui": "1c0727a3cdabf0a6",
+    "path": "/placas",
+    "icon": "car",
+    "layout": "grid",
+    "theme": "1c0727a3cdabf0a9",
+    "breakpoints": [
+      {
+        "name": "Default",
+        "px": "0",
+        "cols": "3"
+      },
+      {
+        "name": "Tablet",
+        "px": "576",
+        "cols": "6"
+      },
+      {
+        "name": "Small Desktop",
+        "px": "768",
+        "cols": "9"
+      },
+      {
+        "name": "Desktop",
+        "px": "1024",
+        "cols": "12"
+      }
+    ],
+    "order": 1,
+    "className": "",
+    "visible": true,
+    "disabled": false
+  },
+  {
+    "id": "1c0727a3cdabf0a8",
+    "type": "ui-group",
+    "name": "Lecturas",
+    "page": "1c0727a3cdabf0a7",
+    "width": 12,
+    "height": 1,
+    "order": 1,
+    "showTitle": false,
+    "className": "",
+    "visible": true,
+    "disabled": false,
+    "groupType": "default"
+  },
+  {
+    "id": "1c0727a3cdabf0a9",
+    "type": "ui-theme",
+    "name": "Placas",
+    "colors": {
+      "surface": "#f3f7f8",
+      "primary": "#185e51",
+      "bgPage": "#f3f7f8",
+      "groupBg": "#f3f7f8",
+      "groupOutline": "#f3f7f8"
+    },
+    "sizes": {
+      "pagePadding": "0px",
+      "groupGap": "0px",
+      "groupBorderRadius": "0px",
+      "widgetGap": "0px",
+      "density": "default"
+    }
+  },
+  {
+    "id": "1c0727a3cdabf0aa",
+    "type": "mqtt-broker",
+    "name": "Mosquitto del proyecto",
+    "broker": "placas-mqtt",
+    "port": 1883,
+    "clientid": "",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": 4,
+    "keepalive": 60,
+    "cleansession": true,
+    "birthTopic": "",
+    "closeTopic": "",
+    "willTopic": ""
+  },
+  {
+    "id": "1c0727a3cdabf0a2",
+    "type": "mqtt in",
+    "z": "1c0727a3cdabf0a1",
+    "name": "Decisiones y evidencia",
+    "topic": "iot/final/placas/decisiones",
+    "qos": "1",
+    "datatype": "json",
+    "broker": "1c0727a3cdabf0aa",
+    "nl": false,
+    "rap": true,
+    "rh": 2,
+    "inputs": 0,
+    "x": 165,
+    "y": 80,
+    "wires": [
+      [
+        "1c0727a3cdabf0a4"
+      ]
+    ]
+  }
+]

@@ -1,0 +1,117 @@
+{
+  "captura_id": "cam-ai-9373a54c-8",
+  "placa": null,
+  "decision": "NO CONCLUYENTE",
+  "motivo": "La lectura quedó por debajo del umbral de Tesseract.",
+  "confianza_detector": 0.96,
+  "confianza_ocr": null,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 1707.3,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            379.7047119140625,
+            308.308837890625,
+            906.6063232421875,
+            505.507080078125
+          ],
+          "confianza": 0.96
+        },
+        {
+          "xyxy": [
+            508.8569641113281,
+            320.887451171875,
+            908.260498046875,
+            496.2947998046875
+          ],
+          "confianza": 0.4002
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    374,
+    303,
+    911,
+    510
+  ],
+  "cajas_agrupadas": 2,
+  "esquinas_placa_xy": [
+    [
+      517.0,
+      322.0
+    ],
+    [
+      902.0,
+      325.0
+    ],
+    [
+      899.0,
+      494.0
+    ],
+    [
+      518.0,
+      487.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "JRS52H",
+        0.0
+      ]
+    ],
+    "franja_superior": [
+      [
+        "BRS52H",
+        0.0
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "BRS 52M",
+        0.81445564
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "BRS 52",
+        0.15950661
+      ]
+    ],
+    "linea_amarilla_palabra_100": [
+      [
+        "BRS 52M",
+        0.17235443
+      ]
+    ],
+    "linea_amarilla_palabra_200": [
+      [
+        "BRS 52M",
+        0.19229431000000002
+      ]
+    ],
+    "rectificada_384": [
+      [
+        "BRS52",
+        0.21227028
+      ]
+    ],
+    "rectificada_640": [
+      [
+        "BRS-52N",
+        0.19709236
+      ]
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "captura_id": "cam-ai-9373a54c-4",
+  "placa": "HGF37N",
+  "decision": "NO REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.8922,
+  "confianza_ocr": 0.7718,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 374.5,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            496.6789855957031,
+            273.98980712890625,
+            911.39697265625,
+            473.41607666015625
+          ],
+          "confianza": 0.8922
+        },
+        {
+          "xyxy": [
+            334.9310302734375,
+            273.3946533203125,
+            913.376220703125,
+            478.58447265625
+          ],
+          "confianza": 0.7929
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    491,
+    268,
+    916,
+    478
+  ],
+  "cajas_agrupadas": 2,
+  "esquinas_placa_xy": [
+    [
+      525.0,
+      288.0
+    ],
+    [
+      910.0,
+      291.0
+    ],
+    [
+      906.0,
+      463.0
+    ],
+    [
+      528.0,
+      458.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "HGF-37N",
+        0.77184906
+      ]
+    ]
+  }
+}

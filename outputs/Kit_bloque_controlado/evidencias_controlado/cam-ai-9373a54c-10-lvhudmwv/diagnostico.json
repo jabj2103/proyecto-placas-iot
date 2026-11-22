@@ -1,0 +1,55 @@
+{
+  "captura_id": "cam-ai-9373a54c-10",
+  "placa": null,
+  "decision": "NO CONCLUYENTE",
+  "motivo": "Se detectaron varias placas candidatas.",
+  "confianza_detector": null,
+  "confianza_ocr": null,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 117.9,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            500.38616943359375,
+            307.88385009765625,
+            904.4963989257812,
+            503.97247314453125
+          ],
+          "confianza": 0.9497
+        },
+        {
+          "xyxy": [
+            313.7996520996094,
+            307.90106201171875,
+            904.3985595703125,
+            507.33404541015625
+          ],
+          "confianza": 0.8879
+        },
+        {
+          "xyxy": [
+            491.339111328125,
+            322.0692138671875,
+            898.086669921875,
+            459.515869140625
+          ],
+          "confianza": 0.3013
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": null,
+  "cajas_agrupadas": 0,
+  "esquinas_placa_xy": null,
+  "lecturas_ocr": {}
+}

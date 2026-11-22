@@ -1,0 +1,79 @@
+{
+  "captura_id": "cam-ai-9373a54c-7",
+  "placa": "HNW638",
+  "decision": "NO REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.9448,
+  "confianza_ocr": 0.8298,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 908.0,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            511.138427734375,
+            324.6173095703125,
+            889.7193603515625,
+            528.3045654296875
+          ],
+          "confianza": 0.9448
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    506,
+    319,
+    894,
+    533
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      524.0,
+      344.0
+    ],
+    [
+      884.0,
+      348.0
+    ],
+    [
+      881.0,
+      519.0
+    ],
+    [
+      527.0,
+      514.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [],
+    "franja_superior": [
+      [
+        "HNW-638",
+        0.51277512
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "HNW 638",
+        0.8763927499999999
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "HNW 638",
+        0.82975517
+      ]
+    ]
+  }
+}

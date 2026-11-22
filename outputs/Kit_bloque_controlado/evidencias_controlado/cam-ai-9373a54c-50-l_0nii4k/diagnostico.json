@@ -1,0 +1,108 @@
+{
+  "captura_id": "cam-ai-9373a54c-50",
+  "placa": "WOL65R",
+  "decision": "NO CONCLUYENTE",
+  "motivo": "La lectura quedó por debajo del umbral de Tesseract.",
+  "confianza_detector": 0.8432,
+  "confianza_ocr": 0.6868,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 1959.5,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            528.3736572265625,
+            187.01632690429688,
+            742.2327880859375,
+            298.7132568359375
+          ],
+          "confianza": 0.8432
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    523,
+    182,
+    747,
+    303
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      535.0,
+      200.0
+    ],
+    [
+      736.0,
+      200.0
+    ],
+    [
+      734.0,
+      289.0
+    ],
+    [
+      536.0,
+      287.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "WOLG5R",
+        0.42766499
+      ]
+    ],
+    "franja_superior": [
+      [
+        "WOL-65R",
+        0.0
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "WOL 65R",
+        0.44006279
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "WOL 65R",
+        0.74444664
+      ]
+    ],
+    "linea_amarilla_palabra_100": [
+      [
+        "WOL 65R",
+        0.6867537699999999
+      ]
+    ],
+    "linea_amarilla_palabra_200": [
+      [
+        "WOL 65R",
+        0.7088401799999999
+      ]
+    ],
+    "rectificada_384": [
+      [
+        "WOL-65R",
+        0.50960808
+      ]
+    ],
+    "rectificada_640": [
+      [
+        "WOL:65R",
+        0.0
+      ]
+    ]
+  }
+}

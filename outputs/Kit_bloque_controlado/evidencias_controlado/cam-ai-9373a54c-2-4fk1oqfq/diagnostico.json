@@ -1,0 +1,83 @@
+{
+  "captura_id": "cam-ai-9373a54c-2",
+  "placa": "GXA795",
+  "decision": "REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.9507,
+  "confianza_ocr": 0.8777,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 1023.5,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            382.69573974609375,
+            324.87176513671875,
+            888.2836303710938,
+            528.2210693359375
+          ],
+          "confianza": 0.9507
+        },
+        {
+          "xyxy": [
+            521.5855102539062,
+            317.4658203125,
+            895.4237670898438,
+            527.5067749023438
+          ],
+          "confianza": 0.4492
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    377,
+    319,
+    893,
+    533
+  ],
+  "cajas_agrupadas": 2,
+  "esquinas_placa_xy": [
+    [
+      524.0,
+      344.0
+    ],
+    [
+      886.0,
+      349.0
+    ],
+    [
+      881.0,
+      518.0
+    ],
+    [
+      527.0,
+      514.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [],
+    "franja_superior": [],
+    "linea_amarilla_100": [
+      [
+        "GXA 795",
+        0.8969064299999999
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "GXA 795",
+        0.8777018700000001
+      ]
+    ]
+  }
+}

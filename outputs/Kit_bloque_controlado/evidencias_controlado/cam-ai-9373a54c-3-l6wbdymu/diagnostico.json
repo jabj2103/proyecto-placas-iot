@@ -1,0 +1,112 @@
+{
+  "captura_id": "cam-ai-9373a54c-3",
+  "placa": null,
+  "decision": "NO CONCLUYENTE",
+  "motivo": "La lectura quedó por debajo del umbral de Tesseract.",
+  "confianza_detector": 0.7958,
+  "confianza_ocr": null,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 1679.6,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            474.97418212890625,
+            323.07110595703125,
+            889.1036987304688,
+            529.310546875
+          ],
+          "confianza": 0.7958
+        },
+        {
+          "xyxy": [
+            322.33111572265625,
+            330.55914306640625,
+            893.9696655273438,
+            531.2792358398438
+          ],
+          "confianza": 0.7553
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    469,
+    318,
+    894,
+    534
+  ],
+  "cajas_agrupadas": 2,
+  "esquinas_placa_xy": [
+    [
+      524.0,
+      344.0
+    ],
+    [
+      884.0,
+      348.0
+    ],
+    [
+      881.0,
+      518.0
+    ],
+    [
+      526.0,
+      513.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [],
+    "franja_superior": [
+      [
+        "DQL519",
+        0.26858673
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "DOL 519",
+        0.24840706
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "DOL 519",
+        0.87409592
+      ]
+    ],
+    "linea_amarilla_palabra_100": [
+      [
+        "DQL 519",
+        0.8487294
+      ]
+    ],
+    "linea_amarilla_palabra_200": [
+      [
+        "DOL 519",
+        0.56154739
+      ]
+    ],
+    "rectificada_384": [
+      [
+        "DOL-519",
+        0.50446289
+      ]
+    ],
+    "rectificada_640": [
+      [
+        "DOL-519",
+        0.11404769999999999
+      ]
+    ]
+  }
+}

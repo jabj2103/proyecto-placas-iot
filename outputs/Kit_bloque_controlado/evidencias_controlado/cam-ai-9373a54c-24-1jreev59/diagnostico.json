@@ -1,0 +1,84 @@
+{
+  "captura_id": "cam-ai-9373a54c-24",
+  "placa": "LTP68D",
+  "decision": "NO REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.9302,
+  "confianza_ocr": 0.8931,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 836.9,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            531.507080078125,
+            198.89459228515625,
+            814.068359375,
+            334.68487548828125
+          ],
+          "confianza": 0.9302
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    526,
+    193,
+    819,
+    339
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      538.0,
+      208.0
+    ],
+    [
+      806.0,
+      211.0
+    ],
+    [
+      804.0,
+      326.0
+    ],
+    [
+      541.0,
+      327.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "ZTP-68D",
+        0.0
+      ]
+    ],
+    "franja_superior": [
+      [
+        "1TP-68D",
+        0.0
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "LTP 68D",
+        0.89314819
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "LTP 68D",
+        0.9498896000000001
+      ]
+    ]
+  }
+}

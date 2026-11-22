@@ -1,0 +1,81 @@
+{
+  "captura_id": "cam-ai-9373a54c-1",
+  "placa": "TME584",
+  "decision": "REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.8124,
+  "confianza_ocr": 0.7412,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 2257.5,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            504.5604553222656,
+            185.8877716064453,
+            877.4583740234375,
+            396.22747802734375
+          ],
+          "confianza": 0.8124
+        },
+        {
+          "xyxy": [
+            301.78375244140625,
+            186.21536254882812,
+            877.3369750976562,
+            397.3462219238281
+          ],
+          "confianza": 0.3926
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    499,
+    180,
+    883,
+    401
+  ],
+  "cajas_agrupadas": 2,
+  "esquinas_placa_xy": [
+    [
+      509.0,
+      206.0
+    ],
+    [
+      878.0,
+      207.0
+    ],
+    [
+      873.0,
+      382.0
+    ],
+    [
+      513.0,
+      379.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "THE584",
+        0.66366699
+      ]
+    ],
+    "franja_superior": [
+      [
+        "TME584",
+        0.7412401599999999
+      ]
+    ]
+  }
+}

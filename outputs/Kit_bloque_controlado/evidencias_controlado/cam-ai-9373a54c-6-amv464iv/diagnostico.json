@@ -1,0 +1,83 @@
+{
+  "captura_id": "cam-ai-9373a54c-6",
+  "placa": "RCP247",
+  "decision": "NO REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.8885,
+  "confianza_ocr": 0.8127,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 891.8,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            357.0642395019531,
+            323.6961669921875,
+            896.62109375,
+            528.5449829101562
+          ],
+          "confianza": 0.8885
+        },
+        {
+          "xyxy": [
+            513.4521484375,
+            331.13916015625,
+            892.5662841796875,
+            527.7479248046875
+          ],
+          "confianza": 0.8121
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    352,
+    318,
+    901,
+    533
+  ],
+  "cajas_agrupadas": 2,
+  "esquinas_placa_xy": [
+    [
+      524.0,
+      344.0
+    ],
+    [
+      884.0,
+      347.0
+    ],
+    [
+      881.0,
+      519.0
+    ],
+    [
+      527.0,
+      513.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [],
+    "franja_superior": [],
+    "linea_amarilla_100": [
+      [
+        "RCP 247",
+        0.81268921
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "RCP 247",
+        0.8821172300000001
+      ]
+    ]
+  }
+}

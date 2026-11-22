@@ -1,0 +1,84 @@
+{
+  "captura_id": "cam-ai-9373a54c-23",
+  "placa": "DOL519",
+  "decision": "NO REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.8851,
+  "confianza_ocr": 0.7786,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 912.0,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            539.895263671875,
+            213.69522094726562,
+            810.995361328125,
+            356.8763122558594
+          ],
+          "confianza": 0.8851
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    534,
+    208,
+    815,
+    361
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      550.0,
+      222.0
+    ],
+    [
+      802.0,
+      224.0
+    ],
+    [
+      798.0,
+      345.0
+    ],
+    [
+      549.0,
+      341.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "DQL519",
+        0.41479362000000003
+      ]
+    ],
+    "franja_superior": [
+      [
+        "DOL519",
+        0.0
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "DOL 519",
+        0.7785786400000001
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "DOL 519",
+        0.8902359
+      ]
+    ]
+  }
+}

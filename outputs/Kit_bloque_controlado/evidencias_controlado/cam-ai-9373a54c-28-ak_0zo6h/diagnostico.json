@@ -1,0 +1,66 @@
+{
+  "captura_id": "cam-ai-9373a54c-28",
+  "placa": "KVB46H",
+  "decision": "REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.9823,
+  "confianza_ocr": 0.7352,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 339.3,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            537.144775390625,
+            197.4366912841797,
+            817.303466796875,
+            334.52203369140625
+          ],
+          "confianza": 0.9823
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    532,
+    192,
+    822,
+    339
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      544.0,
+      206.0
+    ],
+    [
+      813.0,
+      210.0
+    ],
+    [
+      807.0,
+      327.0
+    ],
+    [
+      545.0,
+      326.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "KVB-46H",
+        0.7351563299999999
+      ]
+    ]
+  }
+}

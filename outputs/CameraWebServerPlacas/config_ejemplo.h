@@ -1,0 +1,5 @@
+#pragma once
+
+#define PLACAS_WIFI_SSID "TU_RED_WIFI"
+#define PLACAS_WIFI_PASSWORD "TU_CLAVE_WIFI"
+#define PLACAS_API_URL "http://IP_DEL_PORTATIL:8000/capturas"

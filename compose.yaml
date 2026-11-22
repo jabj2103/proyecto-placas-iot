@@ -1,0 +1,19 @@
+services:
+  placas-mqtt:
+    image: eclipse-mosquitto:2.0
+    ports:
+      - "127.0.0.1:18884:1883"
+    volumes:
+      - ./mqtt/mosquitto-placas.conf:/mosquitto/config/mosquitto.conf:ro
+
+  node-red:
+    image: nodered/node-red:latest
+    depends_on:
+      - placas-mqtt
+    ports:
+      - "127.0.0.1:1880:1880"
+    volumes:
+      - node-red-data:/data
+
+volumes:
+  node-red-data:

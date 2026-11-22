@@ -1,0 +1,61 @@
+﻿caso;tipo;angulo;distancia_m;referencia;placa_leida;lectura;registro_esperado;decision_api;motor;confianza_ocr;tiempo_api_ms;motivo
+C001;Auto;0;0.8;TME584;TME584;EXACTA;REGISTRADA;REGISTRADA;fastplate;1.0;108.9;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C002;Auto;0;0.8;GXA795;GXA795;EXACTA;REGISTRADA;REGISTRADA;fastplate;1.0;132.7;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C003;Auto;0;0.8;DQL519;DQL519;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;103.5;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C004;Moto;0;0.8;HGF37N;HGF37N;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;105.5;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C005;Moto;0;0.8;CXM24A;CXM24A;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9998;105.9;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C006;Auto;0;0.8;RCP247;RCP247;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;120.2;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C007;Auto;0;0.8;HNW638;HNW638;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;1.0;117.5;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C008;Moto;0;0.8;BRS52M;BRS52M;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;104.2;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C009;Moto;0;0.8;ZTP68D;ZTP68D;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;106.9;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C010;Moto;0;0.8;WQL65R;;INCONCLUSA;NO REGISTRADA;NO CONCLUYENTE;fastplate;;78.3;Se detectaron varias placas candidatas.
+C011;Auto;25;0.8;TME584;;INCONCLUSA;REGISTRADA;NO CONCLUYENTE;fastplate;;64.1;Se detectaron varias placas candidatas.
+C012;Auto;25;0.8;HNW638;;INCONCLUSA;NO REGISTRADA;NO CONCLUYENTE;fastplate;;65.4;Se detectaron varias placas candidatas.
+C013;Moto;25;0.8;KVB46H;KVB46H;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9998;100.1;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C014;Moto;25;0.8;ZTP68D;;INCONCLUSA;REGISTRADA;NO CONCLUYENTE;fastplate;;77.3;Se detectaron varias placas candidatas.
+C015;Moto;25;0.8;WQL65R;;INCONCLUSA;NO REGISTRADA;NO CONCLUYENTE;fastplate;;66.6;Se detectaron varias placas candidatas.
+C016;Auto;25;0.8;VFK362;VFK362;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;97.4;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C017;Auto;25;0.8;GXA795;GXA795;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;126.1;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C018;Auto;25;0.8;DQL519;DQL519;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.999;102.8;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C019;Moto;25;0.8;BRS52M;;INCONCLUSA;REGISTRADA;NO CONCLUYENTE;fastplate;;84.2;Se detectaron varias placas candidatas.
+C020;Moto;25;0.8;CXM24A;;INCONCLUSA;NO REGISTRADA;NO CONCLUYENTE;fastplate;;70.6;Se detectaron varias placas candidatas.
+C021;Auto;0;1.15;VFK362;VFK362;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;100.0;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C022;Auto;0;1.15;RCP247;RCP247;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;102.4;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C023;Auto;0;1.15;DQL519;DQL519;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;108.8;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C024;Moto;0;1.15;ZTP68D;ZTP68D;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;114.4;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C025;Moto;0;1.15;CXM24A;CXM24A;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9988;115.2;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C026;Auto;0;1.15;GXA795;GXA795;EXACTA;REGISTRADA;REGISTRADA;fastplate;1.0;114.7;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C027;Auto;0;1.15;HNW638;HNW638;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;1.0;116.5;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C028;Moto;0;1.15;KVB46H;KVB46H;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;109.6;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C029;Moto;0;1.15;HGF37N;HGF37N;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9998;108.0;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C030;Moto;0;1.15;WQL65R;WQL65R;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9998;109.1;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C031;Auto;25;1.15;TME584;TME584;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;117.7;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C032;Auto;25;1.15;RCP247;RCP247;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;115.1;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C033;Moto;25;1.15;KVB46H;KVB46H;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;122.9;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C034;Moto;25;1.15;ZTP68D;ZTP68D;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;108.9;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C035;Moto;25;1.15;WQL65R;WQL65R;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9983;111.1;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C036;Auto;25;1.15;VFK362;VFK362;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;110.5;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C037;Auto;25;1.15;GXA795;GXA795;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;108.9;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C038;Auto;25;1.15;DQL519;DQL519;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9994;112.2;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C039;Moto;25;1.15;BRS52M;BRS52M;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9996;106.6;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C040;Moto;25;1.15;HGF37N;HGF37N;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9998;107.5;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C041;Auto;0;1.5;VFK362;VFK362;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;133.7;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C042;Auto;0;1.5;RCP247;RCP247;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;110.4;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C043;Auto;0;1.5;DQL519;DQL519;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;109.5;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C044;Moto;0;1.5;BRS52M;BRS52M;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9997;115.2;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C045;Moto;0;1.5;CXM24A;CXM24A;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9993;109.0;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C046;Auto;0;1.5;TME584;TME584;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;107.0;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C047;Auto;0;1.5;HNW638;HNW638;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;1.0;106.2;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C048;Moto;0;1.5;KVB46H;KVB46H;EXACTA;REGISTRADA;REGISTRADA;fastplate;1.0;128.3;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C049;Moto;0;1.5;HGF37N;HGF37N;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;110.4;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C050;Moto;0;1.5;WQL65R;WQL65R;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9996;109.2;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C051;Auto;25;1.5;TME584;TME584;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9996;108.6;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C052;Auto;25;1.5;RCP247;RCP247;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;115.0;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C053;Moto;25;1.5;KVB46H;KVB46H;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;110.1;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C054;Moto;25;1.5;ZTP68D;ZTP68D;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9997;116.3;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C055;Moto;25;1.5;CXM24A;CXM24A;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9998;117.7;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C056;Auto;25;1.5;VFK362;VFK362;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9998;112.2;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C057;Auto;25;1.5;GXA795;GXA795;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9999;112.8;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C058;Auto;25;1.5;HNW638;HNW638;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9999;107.0;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C059;Moto;25;1.5;BRS52M;BRS52M;EXACTA;REGISTRADA;REGISTRADA;fastplate;0.9997;115.1;Lectura de FastPlateOCR aceptada y consultada en SQLite.
+C060;Moto;25;1.5;HGF37N;HGF37N;EXACTA;NO REGISTRADA;NO REGISTRADA;fastplate;0.9996;112.1;Lectura de FastPlateOCR aceptada y consultada en SQLite.

@@ -1,0 +1,117 @@
+{
+  "captura_id": "cam-ai-9373a54c-9",
+  "placa": "ZTP68D",
+  "decision": "REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.9732,
+  "confianza_ocr": 0.7187,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 1716.5,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            498.5753479003906,
+            276.02374267578125,
+            889.6732177734375,
+            473.67498779296875
+          ],
+          "confianza": 0.9732
+        },
+        {
+          "xyxy": [
+            273.24658203125,
+            276.90484619140625,
+            884.6824951171875,
+            478.84625244140625
+          ],
+          "confianza": 0.8996
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    493,
+    271,
+    894,
+    478
+  ],
+  "cajas_agrupadas": 2,
+  "esquinas_placa_xy": [
+    [
+      504.0,
+      293.0
+    ],
+    [
+      886.0,
+      292.0
+    ],
+    [
+      888.0,
+      463.0
+    ],
+    [
+      507.0,
+      458.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "1TP-68D",
+        0.69827484
+      ]
+    ],
+    "franja_superior": [
+      [
+        "ZTP-68D",
+        0.0
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "LTP 68D",
+        0.46120628
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "LTP 68D",
+        0.78932945
+      ]
+    ],
+    "linea_amarilla_palabra_100": [
+      [
+        "ZTP 68D",
+        0.6951149
+      ]
+    ],
+    "linea_amarilla_palabra_200": [
+      [
+        "ZTP 68D",
+        0.6991256699999999
+      ]
+    ],
+    "rectificada_384": [
+      [
+        "ZTP-68D",
+        0.71869385
+      ]
+    ],
+    "rectificada_640": [
+      [
+        "ZTP-68D",
+        0.73698814
+      ]
+    ]
+  }
+}

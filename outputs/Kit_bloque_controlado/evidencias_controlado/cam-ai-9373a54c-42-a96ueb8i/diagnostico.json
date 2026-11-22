@@ -1,0 +1,84 @@
+{
+  "captura_id": "cam-ai-9373a54c-42",
+  "placa": "RCP247",
+  "decision": "NO REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.9556,
+  "confianza_ocr": 0.854,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 944.6,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            533.836181640625,
+            193.84320068359375,
+            736.716552734375,
+            300.49859619140625
+          ],
+          "confianza": 0.9556
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    528,
+    188,
+    741,
+    305
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      544.0,
+      203.0
+    ],
+    [
+      727.0,
+      205.0
+    ],
+    [
+      725.0,
+      295.0
+    ],
+    [
+      542.0,
+      294.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "RCP-247",
+        0.0
+      ]
+    ],
+    "franja_superior": [
+      [
+        "RCP247",
+        0.0
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "RCP 247",
+        0.85398895
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "RCP 247",
+        0.85587631
+      ]
+    ]
+  }
+}

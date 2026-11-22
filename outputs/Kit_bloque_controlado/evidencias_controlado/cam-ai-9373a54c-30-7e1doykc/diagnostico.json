@@ -1,0 +1,72 @@
+{
+  "captura_id": "cam-ai-9373a54c-30",
+  "placa": "WOL65R",
+  "decision": "NO REGISTRADA",
+  "motivo": "Lectura aceptada y consulta exacta a SQLite completada.",
+  "confianza_detector": 0.9584,
+  "confianza_ocr": 0.8654,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 594.0,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            536.0712890625,
+            189.35169982910156,
+            817.1556396484375,
+            330.2557373046875
+          ],
+          "confianza": 0.9584
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    531,
+    184,
+    822,
+    335
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      544.0,
+      197.0
+    ],
+    [
+      811.0,
+      200.0
+    ],
+    [
+      810.0,
+      314.0
+    ],
+    [
+      545.0,
+      317.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "WOL-65R",
+        0.55245705
+      ]
+    ],
+    "franja_superior": [
+      [
+        "WOL-65R",
+        0.86536163
+      ]
+    ]
+  }
+}

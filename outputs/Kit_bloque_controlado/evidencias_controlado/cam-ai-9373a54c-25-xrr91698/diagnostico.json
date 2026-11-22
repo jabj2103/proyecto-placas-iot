@@ -1,0 +1,108 @@
+{
+  "captura_id": "cam-ai-9373a54c-25",
+  "placa": "CXM24A",
+  "decision": "NO CONCLUYENTE",
+  "motivo": "La lectura quedó por debajo del umbral de Tesseract.",
+  "confianza_detector": 0.9084,
+  "confianza_ocr": 0.5729,
+  "ocr": "tesseract",
+  "simulada": false,
+  "procesamiento_ms": 1626.0,
+  "umbral_detector": 0.25,
+  "umbral_ocr": 0.7,
+  "resolucion_original": {
+    "ancho": 1280,
+    "alto": 1024
+  },
+  "detecciones": [
+    {
+      "tamano_entrada_yolo": 640,
+      "cajas": [
+        {
+          "xyxy": [
+            530.7509765625,
+            190.10948181152344,
+            813.8228759765625,
+            327.4459228515625
+          ],
+          "confianza": 0.9084
+        }
+      ]
+    }
+  ],
+  "recorte_xyxy": [
+    525,
+    185,
+    818,
+    332
+  ],
+  "cajas_agrupadas": 1,
+  "esquinas_placa_xy": [
+    [
+      537.0,
+      198.0
+    ],
+    [
+      808.0,
+      200.0
+    ],
+    [
+      805.0,
+      313.0
+    ],
+    [
+      542.0,
+      315.0
+    ]
+  ],
+  "lecturas_ocr": {
+    "completo": [
+      [
+        "CXM24A",
+        0.43325153
+      ]
+    ],
+    "franja_superior": [
+      [
+        "CXM24A",
+        0.0
+      ]
+    ],
+    "linea_amarilla_100": [
+      [
+        "CXM24A",
+        0.6374703199999999
+      ]
+    ],
+    "linea_amarilla_200": [
+      [
+        "CXM 244",
+        0.07181259
+      ]
+    ],
+    "linea_amarilla_palabra_100": [
+      [
+        "CXM24A",
+        0.57293495
+      ]
+    ],
+    "linea_amarilla_palabra_200": [
+      [
+        "CXM24A",
+        0.7956042499999999
+      ]
+    ],
+    "rectificada_384": [
+      [
+        "CXM-244",
+        0.23565024999999998
+      ]
+    ],
+    "rectificada_640": [
+      [
+        "CKM 244",
+        0.0
+      ]
+    ]
+  }
+}

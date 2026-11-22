@@ -1,0 +1,16 @@
+.env
+.env.*
+.venv/
+__pycache__/
+*.py[cod]
+*.har
+*.db-journal
+*.db-shm
+*.db-wal
+/datos_locales/
+/work/ocr_comparacion/modelos/
+/outputs/Resultados_FastPlate_60_*.csv
+/outputs/*_local.registros/
+/outputs/CameraWebServerPlacas/config_local.h
+Thumbs.db
+.DS_Store
