@@ -1,6 +1,40 @@
 # Reconocimiento de placas · Proyecto IoT Edge
 
-Se desarrolló este prototipo académico para reconocer matrículas de automóviles y motocicletas. Al pulsar **Capturar y enviar**, la ESP32-CAM AI Thinker envía el JPEG al portátil. Allí se localiza la placa con YOLO, se prepara el recorte con OpenCV, se leen los caracteres y se consulta SQLite. La decisión y las imágenes se muestran en Node-RED.
+Se desarrolló este prototipo académico para reconocer matrículas de automóviles y motocicletas con una ESP32-CAM AI Thinker y un portátil.
+
+## Flujo según el motor OCR
+
+Se selecciona un motor al iniciar la misma API. Los comandos de este README usan **FastPlateOCR**. Para usar **Tesseract**, se inicia la API con `PLACAS_OCR_MOTOR=tesseract`.
+
+```mermaid
+flowchart TD
+    A["ESP32-CAM envía el JPEG al pulsar Capturar y enviar"] --> B["FastAPI valida la imagen y YOLO localiza la placa"]
+    B --> C{"Motor configurado"}
+    C --> F["FastPlateOCR lee el recorte en color"]
+    C --> T["Tesseract lee vistas preprocesadas"]
+    F --> D{"¿Se acepta la matrícula?"}
+    T --> D
+    D -->|Sí| S["Consulta exacta en SQLite"]
+    D -->|No| N["NO CONCLUYENTE"]
+    S --> P["Se guarda la evidencia y se publica la decisión por MQTT"]
+    N --> P
+```
+
+En ambos modos, la cámara envía el JPEG a `POST /capturas`. Se intenta obtener un recorte de una sola placa con YOLO y OpenCV. Si YOLO no detecta ninguna, se devuelve `NO CONCLUYENTE`.
+
+### FastPlateOCR · recorte en color
+
+1. El recorte de YOLO se convierte de **BGR a RGB** y se entrega directamente a FastPlateOCR.
+2. Se acepta una matrícula con formato como `ABC123` o `ABC12D` si el carácter con menor confianza alcanza `0.70`.
+3. Si queda por debajo del umbral, el formato es inválido o quedan varias placas candidatas que no se pueden agrupar, se devuelve `NO CONCLUYENTE`.
+
+### Tesseract · lectura con preprocesamiento
+
+1. Se convierte el recorte a escala de grises, se amplía y se binariza. Si hace falta, se prueban la franja superior, una vista de los caracteres sobre fondo amarillo y una vista rectificada si se encontraron las esquinas.
+2. Se acepta la lectura cuando hay una única matrícula con formato válido y confianza de al menos `0.70`. Las lecturas válidas y confiables que se contradicen quedan como `NO CONCLUYENTE`.
+3. Con `PLACAS_OCR_LATERAL=1`, se puede reintentar una captura inconclusa si hay detecciones y Tesseract no produjo lecturas confiables en conflicto. Se rectifica la perspectiva y se exige que Tesseract lea la misma matrícula en al menos dos vistas y que EasyOCR confirme esa lectura.
+
+**Salida de ambos modos.** Si se acepta la matrícula, se busca una coincidencia exacta en SQLite. Se devuelve `REGISTRADA` si existe o `NO REGISTRADA` si no está en la base. Se guarda la evidencia y se publica la decisión por MQTT para Node-RED, incluidas las capturas inconclusas. El panel consulta las imágenes a través de la API.
 
 ## Resultados de las 60 capturas
 
